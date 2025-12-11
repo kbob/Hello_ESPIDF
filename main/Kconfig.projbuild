@@ -1,0 +1,59 @@
+menu "Hello-ESPIDF Product Configuration"
+
+    choice TARGET_BOARD
+        prompt "Target board name"
+        help
+            Board to build for
+            
+        config BOARD_WAVESHARE_ESP32_S3_LCD_TOUCH_1_69
+            bool "Waveshare ESP32-S3-LCD-Touch-1.69"
+        config BOARD_WAVESHARE_ESP32_S3_LCD_1_28
+            bool "Waveshare ESP32_S3_LCD_1_28 (no touch)"
+    endchoice
+
+    choice SCREEN_PIXEL_FORMAT
+        prompt "Pixel format"
+        help
+            Screen pixel format
+        
+        config SCREEN_PIXEL_RGB565
+            bool "RGB565"
+        config SCREEN_PIXEL_BGR565
+            bool "BGR565"
+        config SCREEN_PIXEL_BRG565
+            bool "BRG565"
+        config SCREEN_PIXEL_GBR565
+            bool "GBR565"
+        config SCREEN_PIXEL_GRB565
+            bool "GRB565"
+        config SCREEN_PIXEL_RBG565
+            bool "RBG565"
+    endchoice
+
+    config SCREEN_PIXEL_FORMAT
+        string
+        default "bgr565" if SCREEN_PIXEL_BGR565
+        default "brg565" if SCREEN_PIXEL_BRG565
+        default "gbr565" if SCREEN_PIXEL_GBR565
+        default "grb565" if SCREEN_PIXEL_GRB565
+        default "rbg565" if SCREEN_PIXEL_RBG565
+        default "rgb565" if SCREEN_PIXEL_RGB565
+
+    # config EXAMPLE_PRODUCT_NAME
+    #     string "Product name"
+    #     default "Not set"
+    #     help
+    #         Product name used in the example
+
+    # choice EXAMPLE_FUNC_IMPL
+    #     prompt "Implementation of function 'func'"
+    #     help
+    #         Select one of the implementations of 'func' to be used in the app.
+    #         This setting is used in component CMakeLists.txt.
+
+    #     config EXAMPLE_FUNC_IMPL_DEV
+    #         bool "Development (func_dev.c)"
+    #     config EXAMPLE_FUNC_IMPL_PROD
+    #         bool "Production (func_prod.c)"
+    # endchoice
+endmenu

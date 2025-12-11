@@ -1,0 +1,3 @@
+# App-specific Configuration that applies to all targets and all boards
+
+CONFIG_ESP_SYSTEM_PANIC_REBOOT_DELAY_SECONDS=10
